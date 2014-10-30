@@ -10,7 +10,16 @@
 #include "ofxFaceTracker.h"
 #include "Clone.h"
 
-//#define USE_SIMULATOR
+#define USE_SIMULATOR
+
+enum scene{
+
+    ready,
+    openCamera,
+    preview,
+    debugging
+
+};
 
 class ofApp : public ofxiOSApp {
 	
@@ -32,7 +41,8 @@ public:
     void deviceOrientationChanged(int newOrientation);
     
     void maskTakenPhoto();
-    ofIndexType convertVertexIndexForMouthMesh(ofIndexType faceTrackerVertexIndes);
+    void maskTakenPhoto(ofImage &input);
+    
     
 #ifndef USE_SIMULATOR
     ofVideoGrabber  camera;
@@ -54,6 +64,13 @@ public:
     bool            cloneReady;
     
     Clone           clone;
+    
+    
+    scene           myScene;
+    
+    
+    ofImage         maskedImage;
+
 
 };
 

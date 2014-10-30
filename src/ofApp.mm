@@ -1,9 +1,22 @@
 #include "ofApp.h"
 
+#include "FaceSubstitutionViewController.h"
+
+// this is gui view controller
+FaceSubstitutionViewController *guiViewController;
+
+
 //--------------------------------------------------------------
 void ofApp::setup(){	
 
     ofSetVerticalSync(true);
+    
+    
+    // gui set up
+    guiViewController = [[FaceSubstitutionViewController alloc]initWithNibName:@"FaceSubstitutionViewController" bundle:nil];
+    [ofxiOSGetGLParentView() addSubview:guiViewController.view];
+    
+    
     
 #ifndef USE_SIMULATOR
     
@@ -14,7 +27,8 @@ void ofApp::setup(){
     
 #else
     
-    camera.loadImage("mask4.jpg");
+    camera.loadImage("mask5.jpg");
+    camera.rotate90(45);
 
     if(camera.getWidth() > camera.getHeight()){
     
@@ -28,29 +42,37 @@ void ofApp::setup(){
     
 #endif
     
-    ofFbo::Settings settings;
-    settings.width = camera.getWidth();
-    settings.height= camera.getHeight();
-    maskFbo.allocate(settings);
-    cameraFbo.allocate(settings);
-    
+//    ofFbo::Settings settings;
+//    settings.width = camera.getWidth();
+//    settings.height= camera.getHeight();
+//    maskFbo.allocate(settings);
+//    cameraFbo.allocate(settings);
+//    
     cameraFaceTracker.setup();
     maskFaceTracker.setup();
     
-    clone.setup(camera.getWidth(), camera.getHeight());
+//    clone.setup(camera.getWidth(), camera.getHeight());
     cloneReady = false;
     
-    maskImage.loadImage("mask4.jpg");
+    maskImage.loadImage("Laura.jpg");
     
     if(maskImage.getWidth() > 0){
     
         maskFaceTracker.update(ofxCv::toCv(maskImage));
         maskPoints = maskFaceTracker.getImagePoints();
-        
+
+        if(!maskFaceTracker.getFound()){
+            
+            cout<<"please select good mask image."<<endl;
+            
+        }
     }
+
     
     bTakenPhoto = false;
     
+    
+    myScene = ready;
     
 }
 
@@ -72,48 +94,22 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	
+
+    if(myScene == ready){
     
-    if(!bTakenPhoto){
+        // TODO: write some ready code.
         
-        ofPushMatrix();
+        ofPushStyle();
         
-        ofTranslate(ofGetWidth()/2. - cameraFbo.getWidth()/2., ofGetHeight()/2. - cameraFbo.getHeight()/2.);
-
+        ofSetColor(0, 0, 0);
+        ofDrawBitmapString("unknown camera", ofGetWidth()/2., ofGetHeight()/2.);
         
-        camera.draw(0, 0);
+        ofPopStyle();
         
-
-        ofPopMatrix();
         
     }
-    else if(bTakenPhoto && cameraFaceTracker.getFound() && maskFaceTracker.getFound()){
 
-        ofPushMatrix();
-
-        
-        
-        ofTranslate(ofGetWidth()/2. - cameraFbo.getWidth()/2., ofGetHeight()/2. - cameraFbo.getHeight()/2.);
-        
-        clone.draw(0, 0);
-        //clone.srcBlur.draw(0, 0);
-        
-        ofPopMatrix();
-        
-    }
-    else{
     
-        ofPushMatrix();
-        
-        ofTranslate(ofGetWidth()/2. - cameraFbo.getWidth()/2., ofGetHeight()/2. - cameraFbo.getHeight()/2.);
-        
-        camera.draw(0, 0);
-        
-        ofPopMatrix();
-        
-        
-        ofDrawBitmapString("can not find faces...", ofPoint(10, 10));
-        
-    }
 
     
 }
@@ -230,4 +226,82 @@ void ofApp::maskTakenPhoto(){
 
 }
 
+void ofApp::maskTakenPhoto(ofImage &input){
 
+    // change image type. OF_IMAGE_COLOR_ALPHA => OF_IMAGE_COLOR
+    
+    if(input.type == OF_IMAGE_COLOR_ALPHA){
+    
+        input.setImageType(OF_IMAGE_COLOR);
+        
+    }
+    
+    // resize input image.
+    if(input.getWidth() > input.getHeight()){
+        
+        input.resize(ofGetWidth(), input.getHeight()*ofGetWidth() /input.getWidth());
+    }
+    else{
+        
+        input.resize(input.getWidth()*ofGetHeight()/input.getHeight(), ofGetHeight());
+        
+    }
+    
+    
+    // set mask Fbo
+    ofFbo::Settings settings;
+    settings.width = input.getWidth();
+    settings.height= input.getHeight();
+    maskFbo.allocate(settings);
+    cameraFbo.allocate(settings);
+    
+    clone.setup(input.getWidth(), input.getHeight());
+
+    
+    cameraFaceTracker.update(ofxCv::toCv(input));
+    cloneReady = cameraFaceTracker.getFound();
+    
+    if(cloneReady){
+        
+        ofMesh cameraMesh = cameraFaceTracker.getImageMesh();
+        cameraMesh.clearTexCoords();
+        cameraMesh.addTexCoords(maskPoints);
+        for(int i=0; i< cameraMesh.getTexCoords().size(); i++) {
+            ofVec2f & texCoord = cameraMesh.getTexCoords()[i];
+            texCoord.x /= ofNextPow2(maskImage.getWidth());
+            texCoord.y /= ofNextPow2(maskImage.getHeight());
+        }
+        
+        maskFbo.begin();
+        ofClear(0, 255);
+        cameraMesh.draw();
+        maskFbo.end();
+        
+        cameraFbo.begin();
+        ofClear(0, 255);
+        input.getTextureReference().bind();
+        maskImage.bind();
+        cameraMesh.draw();
+        maskImage.unbind();
+        cameraFbo.end();
+        
+        clone.setStrength(16);
+        clone.update(cameraFbo.getTextureReference(), input.getTextureReference(), maskFbo.getTextureReference());
+        
+        
+        ofPixels pixels;
+        clone.buffer.readToPixels(pixels);
+        maskedImage.setFromPixels(pixels);
+        maskedImage.update();
+        
+        
+        myScene = preview;
+        
+    }
+    else{
+    
+        maskedImage = input;
+        
+    }
+        
+}

@@ -39,6 +39,11 @@
 		BB16EBD20F2B2A9500518274 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD10F2B2A9500518274 /* OpenGLES.framework */; };
 		BB16EBD90F2B2AB500518274 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB16EBD80F2B2AB500518274 /* QuartzCore.framework */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
+		C1078E8019FCFC78001C9B51 /* FaceSubstitutionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = C1078E7E19FCFC78001C9B51 /* FaceSubstitutionViewController.mm */; };
+		C1078E8119FCFC78001C9B51 /* FaceSubstitutionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1078E7F19FCFC78001C9B51 /* FaceSubstitutionViewController.xib */; };
+		C1078E8419FD11C2001C9B51 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1078E8319FD11C2001C9B51 /* Media.xcassets */; };
+		C1078E901A016E51001C9B51 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1078E8F1A016E51001C9B51 /* Social.framework */; };
+		C1078E931A016FAC001C9B51 /* SocialFrameworksUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C1078E921A016FAC001C9B51 /* SocialFrameworksUtil.m */; };
 		C14E0BD919F4168F00EA3B53 /* Clone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C14E0BD719F4168F00EA3B53 /* Clone.cpp */; };
 		C602002DE761F9B52DB4400A /* ObjectFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE75A3FBA2C2D87D14F06FE6 /* ObjectFinder.cpp */; };
 		D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A4DD23693DFAB8EC05FAA5D /* ofxCvShortImage.cpp */; };
@@ -195,6 +200,13 @@
 		BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BC378899A000AA03D8319C6D /* ofxFaceTrackerThreaded.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxFaceTrackerThreaded.h; path = ../../../addons/ofxFaceTracker/src/ofxFaceTrackerThreaded.h; sourceTree = SOURCE_ROOT; };
 		BE9718AC2BA4516A804EE019 /* CLM.cc */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = CLM.cc; path = ../../../addons/ofxFaceTracker/libs/FaceTracker/src/lib/CLM.cc; sourceTree = SOURCE_ROOT; };
+		C1078E7D19FCFC78001C9B51 /* FaceSubstitutionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceSubstitutionViewController.h; sourceTree = "<group>"; };
+		C1078E7E19FCFC78001C9B51 /* FaceSubstitutionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceSubstitutionViewController.mm; sourceTree = "<group>"; };
+		C1078E7F19FCFC78001C9B51 /* FaceSubstitutionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FaceSubstitutionViewController.xib; sourceTree = "<group>"; };
+		C1078E8319FD11C2001C9B51 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		C1078E8F1A016E51001C9B51 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C1078E911A016FAC001C9B51 /* SocialFrameworksUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialFrameworksUtil.h; sourceTree = "<group>"; };
+		C1078E921A016FAC001C9B51 /* SocialFrameworksUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFrameworksUtil.m; sourceTree = "<group>"; };
 		C14E0BD719F4168F00EA3B53 /* Clone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clone.cpp; sourceTree = "<group>"; };
 		C14E0BD819F4168F00EA3B53 /* Clone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clone.h; sourceTree = "<group>"; };
 		C1C56D20A1A57DC44096BFE7 /* ofxCvContourFinder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvContourFinder.h; path = ../../../addons/ofxOpenCv/src/ofxCvContourFinder.h; sourceTree = SOURCE_ROOT; };
@@ -266,6 +278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1078E901A016E51001C9B51 /* Social.framework in Frameworks */,
 				E41D421413B3A95300A75A5D /* libofxiOS_iphoneos_Debug.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -395,6 +408,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				C1078E8F1A016E51001C9B51 /* Social.framework */,
 				678E130917951536005B6D19 /* Icon.png */,
 				678E130717951530005B6D19 /* Icon@2x.png */,
 				678E130B1795153C005B6D19 /* Default.png */,
@@ -695,6 +709,17 @@
 			name = core;
 			sourceTree = "<group>";
 		};
+		C1078E7319FCF530001C9B51 /* oFApp */ = {
+			isa = PBXGroup;
+			children = (
+				E4D8936D11527B74007E1F53 /* ofApp.mm */,
+				E4D8936C11527B74007E1F53 /* ofApp.h */,
+				C14E0BD719F4168F00EA3B53 /* Clone.cpp */,
+				C14E0BD819F4168F00EA3B53 /* Clone.h */,
+			);
+			name = oFApp;
+			sourceTree = "<group>";
+		};
 		C58CC92A5283B95AA31D50FB /* video */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,11 +798,14 @@
 		E4D8936A11527B74007E1F53 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C1078E7319FCF530001C9B51 /* oFApp */,
 				E4D8936B11527B74007E1F53 /* main.mm */,
-				E4D8936D11527B74007E1F53 /* ofApp.mm */,
-				E4D8936C11527B74007E1F53 /* ofApp.h */,
-				C14E0BD719F4168F00EA3B53 /* Clone.cpp */,
-				C14E0BD819F4168F00EA3B53 /* Clone.h */,
+				C1078E7D19FCFC78001C9B51 /* FaceSubstitutionViewController.h */,
+				C1078E7E19FCFC78001C9B51 /* FaceSubstitutionViewController.mm */,
+				C1078E7F19FCFC78001C9B51 /* FaceSubstitutionViewController.xib */,
+				C1078E8319FD11C2001C9B51 /* Media.xcassets */,
+				C1078E911A016FAC001C9B51 /* SocialFrameworksUtil.h */,
+				C1078E921A016FAC001C9B51 /* SocialFrameworksUtil.m */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -928,6 +956,8 @@
 				678E130A17951536005B6D19 /* Icon.png in Resources */,
 				678E130C1795153C005B6D19 /* Default.png in Resources */,
 				678E130E17951540005B6D19 /* Default@2x.png in Resources */,
+				C1078E8119FCFC78001C9B51 /* FaceSubstitutionViewController.xib in Resources */,
+				C1078E8419FD11C2001C9B51 /* Media.xcassets in Resources */,
 				678E131017951549005B6D19 /* Default-568h@2x~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -961,11 +991,13 @@
 				1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */,
 				169D3C72FDE6C5590A1616F5 /* ofxCvFloatImage.cpp in Sources */,
 				FB09C6B2A1DA0EA217240CB8 /* ofxCvGrayscaleImage.cpp in Sources */,
+				C1078E8019FCFC78001C9B51 /* FaceSubstitutionViewController.mm in Sources */,
 				E212C821D1064B92DD953A42 /* ofxCvHaarFinder.cpp in Sources */,
 				63020F16C7E8DED980111241 /* ofxCvImage.cpp in Sources */,
 				D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */,
 				B6840996567E78436F7ECFAB /* ETF.cpp in Sources */,
 				F76B4A79BD8DE4854141CB47 /* fdog.cpp in Sources */,
+				C1078E931A016FAC001C9B51 /* SocialFrameworksUtil.m in Sources */,
 				EBCDE831EFAE08274E799C97 /* Calibration.cpp in Sources */,
 				6AABAB39E82AF5CFEA23A205 /* ContourFinder.cpp in Sources */,
 				45CC483A999BF1065A6B926C /* Distance.cpp in Sources */,

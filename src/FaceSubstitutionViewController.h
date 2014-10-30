@@ -28,5 +28,18 @@
 - (void)openPhotoLibrary;
 - (void)getMaskedImage;
 
+- (IBAction)retry:(id)sender;
+- (IBAction)facebook:(id)sender;
+- (IBAction)twitter:(id)sender;
+- (IBAction)save:(id)sender;
+
+- (void)hideAllButton;
+- (void)showAllButton;
+
+@property (retain, nonatomic) IBOutlet UIButton *facebookButton;
+@property (retain, nonatomic) IBOutlet UIButton *twitterButton;
+@property (retain, nonatomic) IBOutlet UIButton *saveButton;
+@property (retain, nonatomic) IBOutlet UIButton *retryButton;
 @property (retain, nonatomic) IBOutlet UIImageView *imageView;
+@property (retain, nonatomic) IBOutlet UILabel *savedLabel;
 @end

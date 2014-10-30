@@ -54,7 +54,7 @@ void ofApp::setup(){
 //    clone.setup(camera.getWidth(), camera.getHeight());
     cloneReady = false;
     
-    maskImage.loadImage("mask4.jpg");
+    maskImage.loadImage("Laura.jpg");
     
     if(maskImage.getWidth() > 0){
     
@@ -298,7 +298,7 @@ void ofApp::maskTakenPhoto(ofImage &input){
         maskImage.unbind();
         cameraFbo.end();
         
-        clone.setStrength(24);
+        clone.setStrength(16);
         clone.update(cameraFbo.getTextureReference(), input.getTextureReference(), maskFbo.getTextureReference());
         
         

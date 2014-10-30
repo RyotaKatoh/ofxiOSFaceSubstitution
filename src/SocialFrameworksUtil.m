@@ -31,7 +31,7 @@
 - (void)postToTwitter:(UIImage *)image{
 
     SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    [vc setInitialText:@"#unknownCamera"];
+    [vc setInitialText:@" #unknownCamera"];
     [vc addImage:image];
     [vc addURL:[NSURL URLWithString:@"http://www.apple.com"]];
     

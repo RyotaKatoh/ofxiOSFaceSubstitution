@@ -7,7 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FaceSubstitutionViewController">
             <connections>
+                <outlet property="facebookButton" destination="df6-K7-CPw" id="dqh-os-Ozc"/>
                 <outlet property="imageView" destination="Jj9-Om-VJL" id="5xk-nQ-EMe"/>
+                <outlet property="retryButton" destination="1j1-xs-NaX" id="95P-4y-bNt"/>
+                <outlet property="saveButton" destination="Bxz-6x-CO4" id="GqM-qP-ObO"/>
+                <outlet property="savedLabel" destination="9ws-HE-ZHZ" id="RO3-yX-Mbj"/>
+                <outlet property="twitterButton" destination="cPh-Iu-wb6" id="uJx-S4-wjX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,11 +25,63 @@
                     <rect key="frame" x="0.0" y="70" width="320" height="427"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1j1-xs-NaX">
+                    <rect key="frame" x="16" y="513" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <state key="normal" image="retry"/>
+                    <connections>
+                        <action selector="retry:" destination="-1" eventType="touchUpInside" id="YtI-Bf-8jV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="df6-K7-CPw">
+                    <rect key="frame" x="101" y="513" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <state key="normal" image="facebook">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="facebook:" destination="-1" eventType="touchUpInside" id="hSi-vm-5SD"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cPh-Iu-wb6">
+                    <rect key="frame" x="179" y="514" width="41" height="41"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <state key="normal" image="twitter">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="twitter:" destination="-1" eventType="touchUpInside" id="eDo-CF-nLj"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bxz-6x-CO4">
+                    <rect key="frame" x="259" y="513" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <state key="normal" image="save">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="save:" destination="-1" eventType="touchUpInside" id="p5D-u8-giU"/>
+                    </connections>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.64999999999999969" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9ws-HE-ZHZ">
+                    <rect key="frame" x="79" y="260" width="163" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <gestureRecognizers/>
             <point key="canvasLocation" x="162" y="125"/>
         </view>
     </objects>
+    <resources>
+        <image name="facebook" width="100" height="100"/>
+        <image name="retry" width="100" height="100"/>
+        <image name="save" width="100" height="100"/>
+        <image name="twitter" width="100" height="100"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

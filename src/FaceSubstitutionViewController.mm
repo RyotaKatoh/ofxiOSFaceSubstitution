@@ -25,6 +25,11 @@
     social = [[SocialFrameworksUtil alloc]init];
     [social setViewController:self];
     
+    [self hideAllButton];
+    [self.retryButton.imageView setTintColor:[UIColor whiteColor]];
+    [self.facebookButton.imageView setTintColor:[UIColor whiteColor]];
+    [self.twitterButton.imageView setTintColor:[UIColor whiteColor]];
+    [self.saveButton.imageView setTintColor:[UIColor whiteColor]];
     
 }
 
@@ -46,6 +51,11 @@
 - (void)dealloc {
 
     [_imageView release];
+    [_retryButton release];
+    [_facebookButton release];
+    [_twitterButton release];
+    [_saveButton release];
+    [_savedLabel release];
     [super dealloc];
 }
 
@@ -53,19 +63,13 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 
-//    if(myApp->maskedImage.isAllocated()){
-//    
-//        [social postToTwitter:maskedImage];
-//        
-//    }
-//    else{
+    
+    if(myApp->myScene == ready){
         
         myApp->myScene = openCamera;
-        
-    
         [self openCamera];
         
-//    }
+    }
     
 }
 
@@ -125,6 +129,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     [self getMaskedImage];
+    [self showAllButton];
     
 }
 
@@ -132,7 +137,11 @@
 
     [self dismissViewControllerAnimated:YES completion:nil];
 
+    self.imageView.image = nil;
+    [self hideAllButton];
+    
     myApp->myScene = ready;
+    
 }
 
 UIImage * UIImageFromOFImage( ofImage & img ){
@@ -172,6 +181,84 @@ UIImage * UIImageFromOFImage( ofImage & img ){
     
     maskedImage = [UIImage imageWithCGImage:UIImageFromOFImage(myApp->maskedImage).CGImage];
     self.imageView.image = maskedImage;
+    
+}
+
+- (IBAction)retry:(id)sender {
+    
+    [self openCamera];
+    
+}
+
+- (IBAction)facebook:(id)sender {
+    
+    [social postToFacebook:maskedImage];
+    
+}
+
+- (IBAction)twitter:(id)sender {
+    
+    [social postToTwitter:maskedImage];
+    
+    
+}
+
+- (IBAction)save:(id)sender {
+    
+    UIImageWriteToSavedPhotosAlbum(maskedImage, self, @selector(finishSaving:didFinishSavingWithError:contextInfo:), nil);
+ 
+}
+
+- (void)finishSaving:(UIImage *)_image didFinishSavingWithError:(NSError*)_error contextInfo:(void *)_contextinfo{
+    
+    if(_error){
+        
+        self.savedLabel.text = @"error!";
+    
+    }
+    else{
+    
+        self.savedLabel.text = @"success!";
+        
+    }
+    
+    [[self.savedLabel layer]setCornerRadius:6.0];
+    [self.savedLabel setClipsToBounds:YES];
+    
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.4;
+    [[self.savedLabel layer]addAnimation:animation forKey:nil];
+    
+    self.savedLabel.hidden = NO;
+    NSTimer *tm = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(hideSavedLabel:) userInfo:nil repeats:NO];
+
+}
+
+- (void)hideSavedLabel:(NSTimer*)timer{
+
+    self.savedLabel.hidden = YES;
+    
+}
+
+
+
+- (void)hideAllButton{
+    
+    self.retryButton.hidden     = YES;
+    self.facebookButton.hidden  = YES;
+    self.twitterButton.hidden   = YES;
+    self.saveButton.hidden      = YES;
+    self.savedLabel.hidden      = YES;
+    
+}
+
+- (void)showAllButton{
+
+    self.retryButton.hidden     = NO;
+    self.facebookButton.hidden  = NO;
+    self.twitterButton.hidden   = NO;
+    self.saveButton.hidden      = NO;
     
 }
 

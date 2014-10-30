@@ -10,7 +10,7 @@ FaceSubstitutionViewController *guiViewController;
 void ofApp::setup(){	
 
     ofSetVerticalSync(true);
-    
+    ofBackground(0, 0, 0);
     
     // gui set up
     guiViewController = [[FaceSubstitutionViewController alloc]initWithNibName:@"FaceSubstitutionViewController" bundle:nil];
@@ -54,7 +54,7 @@ void ofApp::setup(){
 //    clone.setup(camera.getWidth(), camera.getHeight());
     cloneReady = false;
     
-    maskImage.loadImage("Laura.jpg");
+    maskImage.loadImage("mask4.jpg");
     
     if(maskImage.getWidth() > 0){
     
@@ -71,8 +71,18 @@ void ofApp::setup(){
     
     bTakenPhoto = false;
     
-    
     myScene = ready;
+    
+    ofxTextParticle unknownTitle;
+    unknownTitle.setup("Unknown", ofPoint(ofGetWidth()/2., ofGetHeight()/7.));
+    titles.push_back(unknownTitle);
+    
+    ofxTextParticle cameraTitle;
+    cameraTitle.setup("Camera", ofPoint(ofGetWidth()/2., ofGetHeight()*2/7.));
+    titles.push_back(cameraTitle);
+    
+    font.loadFont("font/Arial Black.ttf", 18);
+    
     
 }
 
@@ -99,13 +109,16 @@ void ofApp::draw(){
     
         // TODO: write some ready code.
         
+        for(int i=0;i<titles.size();i++)
+            titles[i].draw();
+        
         ofPushStyle();
         
-        ofSetColor(0, 0, 0);
-        ofDrawBitmapString("unknown camera", ofGetWidth()/2., ofGetHeight()/2.);
+        ofSetColor(255, 255, 255, 255*abs(sin(ofGetFrameNum()*0.05)));
+        string tapToStart = "tap to start";
+        font.drawString(tapToStart, ofGetWidth()/2. - font.stringWidth(tapToStart)/2., ofGetHeight()*5/7 - font.stringHeight(tapToStart)/2.);
         
         ofPopStyle();
-        
         
     }
 
@@ -285,7 +298,7 @@ void ofApp::maskTakenPhoto(ofImage &input){
         maskImage.unbind();
         cameraFbo.end();
         
-        clone.setStrength(16);
+        clone.setStrength(24);
         clone.update(cameraFbo.getTextureReference(), input.getTextureReference(), maskFbo.getTextureReference());
         
         

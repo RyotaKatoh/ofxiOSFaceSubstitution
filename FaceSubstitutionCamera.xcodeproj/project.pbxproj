@@ -44,6 +44,7 @@
 		C1078E8419FD11C2001C9B51 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1078E8319FD11C2001C9B51 /* Media.xcassets */; };
 		C1078E901A016E51001C9B51 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1078E8F1A016E51001C9B51 /* Social.framework */; };
 		C1078E931A016FAC001C9B51 /* SocialFrameworksUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C1078E921A016FAC001C9B51 /* SocialFrameworksUtil.m */; };
+		C1078E961A0202B3001C9B51 /* ofxTextParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1078E941A0202B3001C9B51 /* ofxTextParticle.cpp */; };
 		C14E0BD919F4168F00EA3B53 /* Clone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C14E0BD719F4168F00EA3B53 /* Clone.cpp */; };
 		C602002DE761F9B52DB4400A /* ObjectFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE75A3FBA2C2D87D14F06FE6 /* ObjectFinder.cpp */; };
 		D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A4DD23693DFAB8EC05FAA5D /* ofxCvShortImage.cpp */; };
@@ -207,6 +208,8 @@
 		C1078E8F1A016E51001C9B51 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C1078E911A016FAC001C9B51 /* SocialFrameworksUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialFrameworksUtil.h; sourceTree = "<group>"; };
 		C1078E921A016FAC001C9B51 /* SocialFrameworksUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFrameworksUtil.m; sourceTree = "<group>"; };
+		C1078E941A0202B3001C9B51 /* ofxTextParticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTextParticle.cpp; sourceTree = "<group>"; };
+		C1078E951A0202B3001C9B51 /* ofxTextParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTextParticle.h; sourceTree = "<group>"; };
 		C14E0BD719F4168F00EA3B53 /* Clone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clone.cpp; sourceTree = "<group>"; };
 		C14E0BD819F4168F00EA3B53 /* Clone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clone.h; sourceTree = "<group>"; };
 		C1C56D20A1A57DC44096BFE7 /* ofxCvContourFinder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvContourFinder.h; path = ../../../addons/ofxOpenCv/src/ofxCvContourFinder.h; sourceTree = SOURCE_ROOT; };
@@ -716,6 +719,8 @@
 				E4D8936C11527B74007E1F53 /* ofApp.h */,
 				C14E0BD719F4168F00EA3B53 /* Clone.cpp */,
 				C14E0BD819F4168F00EA3B53 /* Clone.h */,
+				C1078E941A0202B3001C9B51 /* ofxTextParticle.cpp */,
+				C1078E951A0202B3001C9B51 /* ofxTextParticle.h */,
 			);
 			name = oFApp;
 			sourceTree = "<group>";
@@ -1011,6 +1016,7 @@
 				F451166A6C72528F3F009F6C /* Expression.cpp in Sources */,
 				8AC885FBC5325950337592D2 /* ExpressionClassifier.cpp in Sources */,
 				24735CD2E138DC5C1F0A1085 /* ofxFaceTracker.cpp in Sources */,
+				C1078E961A0202B3001C9B51 /* ofxTextParticle.cpp in Sources */,
 				80AE40254BBE0F03C25563C1 /* CLM.cc in Sources */,
 				9F4DA577D30F7B7CA7B8E5F8 /* FCheck.cc in Sources */,
 				6E23C8DD86B189759F85B24F /* FDet.cc in Sources */,

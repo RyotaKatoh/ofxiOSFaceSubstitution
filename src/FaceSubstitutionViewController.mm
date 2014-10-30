@@ -53,16 +53,19 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 
-    if(myApp->maskedImage.isAllocated()){
-    
-        [social postToTwitter:maskedImage];
+//    if(myApp->maskedImage.isAllocated()){
+//    
+//        [social postToTwitter:maskedImage];
+//        
+//    }
+//    else{
         
-    }
-    else{
+        myApp->myScene = openCamera;
+        
     
         [self openCamera];
         
-    }
+//    }
     
 }
 
@@ -129,6 +132,7 @@
 
     [self dismissViewControllerAnimated:YES completion:nil];
 
+    myApp->myScene = ready;
 }
 
 UIImage * UIImageFromOFImage( ofImage & img ){

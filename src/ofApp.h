@@ -10,6 +10,8 @@
 #include "ofxFaceTracker.h"
 #include "Clone.h"
 
+#include "ofxTextParticle.h"
+
 #define USE_SIMULATOR
 
 enum scene{
@@ -71,6 +73,8 @@ public:
     
     ofImage         maskedImage;
 
+    vector<ofxTextParticle> titles;
+    ofTrueTypeFont  font;
 
 };
 

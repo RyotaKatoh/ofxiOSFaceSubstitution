@@ -12,6 +12,8 @@
 	<dict>
 		<key>37526DA425E5430474A14FBFA1BC4525160B5FC1</key>
 		<string>github.com:kylemcdonald/ofxCv.git</string>
+		<key>5DB7C332A3A89035E93556A2A38BF414005BA671</key>
+		<string>github.com:jefftimesten/ofxJSON.git</string>
 		<key>68BCC10BABFF2D70AF40C1613280C442E43E6F1D</key>
 		<string>github.com:2bbb/ofxCIDetector.git</string>
 		<key>A4D0373C699384D3146D509694B516AB9C7B5AD6</key>
@@ -25,6 +27,8 @@
 	<dict>
 		<key>37526DA425E5430474A14FBFA1BC4525160B5FC1</key>
 		<string>../../../../../addons/ofxCv</string>
+		<key>5DB7C332A3A89035E93556A2A38BF414005BA671</key>
+		<string>../../../../../addons/ofxJSON</string>
 		<key>68BCC10BABFF2D70AF40C1613280C442E43E6F1D</key>
 		<string>../../../../../addons/ofxCIDetector</string>
 		<key>A4D0373C699384D3146D509694B516AB9C7B5AD6</key>
@@ -71,6 +75,14 @@
 			<string>A4D0373C699384D3146D509694B516AB9C7B5AD6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ofxFaceTracker</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5DB7C332A3A89035E93556A2A38BF414005BA671</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxJSON</string>
 		</dict>
 	</array>
 </dict>

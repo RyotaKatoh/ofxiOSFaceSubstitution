@@ -14,6 +14,8 @@
 
 #define USE_SIMULATOR
 
+static const int STORED_IMAGES = 5;
+
 enum scene{
 
     ready,
@@ -45,6 +47,8 @@ public:
     void maskTakenPhoto();
     void maskTakenPhoto(ofImage &input);
     
+    void setMaskFaceTraker();
+    void setDebugTracker();
     
 #ifndef USE_SIMULATOR
     ofVideoGrabber  camera;
@@ -52,6 +56,7 @@ public:
 #else
     ofImage         camera;
 #endif
+    int             numMaskImages;
     ofImage         maskImage;
     
     ofFbo           cameraFbo;

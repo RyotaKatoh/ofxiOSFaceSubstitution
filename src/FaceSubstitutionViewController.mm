@@ -8,7 +8,7 @@
 
 #import "FaceSubstitutionViewController.h"
 #include "ofxiOSExtras.h"
-
+#import "SVProgressHUD/SVProgressHUD.h"
 
 @interface FaceSubstitutionViewController ()
 
@@ -19,6 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    main_queue = dispatch_get_main_queue();
+    sub_queue = dispatch_queue_create("imageProcessing", 0);
+    
 
     myApp = (ofApp *)ofGetAppPtr();
     
@@ -86,6 +90,7 @@
         
         [imagePickerController setAllowsEditing:NO];
         [imagePickerController setDelegate:self];
+        [imagePickerController setEditing:NO];
         
         [self presentViewController:imagePickerController animated:YES completion:nil];
         
@@ -123,13 +128,38 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 
-    pickedImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
+
     
+//    [self dismissViewControllerAnimated:YES completion:nil];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    pickedImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
+    [SVProgressHUD show];
     
-    [self getMaskedImage];
-    [self showAllButton];
+    dispatch_async(sub_queue, ^{
+//        pickedImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
+//        
+//        [self getMaskedImage];
+ 
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        dispatch_async(main_queue, ^{
+            
+            pickedImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
+            
+            [self getMaskedImage];
+            [self showAllButton];
+            [SVProgressHUD dismiss];
+            
+            //[SVProgressHUD dismiss];
+            //[self showAllButton];
+        });
+        
+    });
+    
+//    pickedImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
+//    [self getMaskedImage];
+//    [self showAllButton];
+//    [SVProgressHUD dismiss];
     
 }
 
@@ -188,6 +218,8 @@ UIImage * UIImageFromOFImage( ofImage & img ){
     
     [self openCamera];
     
+    myApp->setMaskFaceTraker();
+    //myApp->setDebugTracker();
 }
 
 - (IBAction)facebook:(id)sender {

@@ -1,2 +1,4 @@
 bin/data/*.*
 bin/data/font
+src/SVProgressHUD
+

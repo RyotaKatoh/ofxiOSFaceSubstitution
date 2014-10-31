@@ -1,5 +1,7 @@
 #include "ofApp.h"
 
+#include "ofxJSONElement.h"
+
 #include "FaceSubstitutionViewController.h"
 
 // this is gui view controller
@@ -16,6 +18,20 @@ void ofApp::setup(){
     guiViewController = [[FaceSubstitutionViewController alloc]initWithNibName:@"FaceSubstitutionViewController" bundle:nil];
     [ofxiOSGetGLParentView() addSubview:guiViewController.view];
     
+    
+    // json setting
+    ofxJSONElement response;
+    string url = "http://ryotakatoh.com/unknowncamera/getNumImages.cgi";
+    if(!response.open(url)){
+        
+        cout<<"can not connect to the web server"<<endl;
+        
+    }
+    else{
+    
+        numMaskImages = response["numImages"].asInt();
+    
+    }
     
     
 #ifndef USE_SIMULATOR
@@ -54,7 +70,20 @@ void ofApp::setup(){
 //    clone.setup(camera.getWidth(), camera.getHeight());
     cloneReady = false;
     
-    maskImage.loadImage("Laura.jpg");
+    
+
+    int maskNo = ofRandom(numMaskImages);
+    url = "http://ryotakatoh.com/unknowncamera/MaskImages/"+ofToString(maskNo)+".jpg";
+    maskImage.loadImage(url);
+    if(!maskImage.isAllocated()){
+    
+        maskNo = ofRandom(STORED_IMAGES);
+        url = "mask" + ofToString(maskNo) + ".jpg";
+        maskImage.loadImage(url);
+        
+    }
+    
+
     
     if(maskImage.getWidth() > 0){
     
@@ -317,4 +346,74 @@ void ofApp::maskTakenPhoto(ofImage &input){
         
     }
         
+}
+
+void ofApp::setMaskFaceTraker(){
+    
+    if(maskImage.isAllocated())
+        maskImage.clear();
+    if(maskPoints.size() > 0)
+        maskPoints.clear();
+    
+    // set mask Image
+    int maskNo = ofRandom(numMaskImages);
+    string url = "http://ryotakatoh.com/unknowncamera/MaskImages/"+ofToString(maskNo)+".jpg";
+    maskImage.loadImage(url);
+    if(!maskImage.isAllocated()){
+        
+        maskNo = ofRandom(STORED_IMAGES);
+        url = "mask" + ofToString(maskNo) + ".jpg";
+        maskImage.loadImage(url);
+        
+    }
+    
+    // setup maskFaceTracker
+    if(maskImage.getWidth() > 0){
+        
+        maskFaceTracker.update(ofxCv::toCv(maskImage));
+        maskPoints = maskFaceTracker.getImagePoints();
+        
+        if(!maskFaceTracker.getFound()){
+            
+            //cout<<"please select good mask image."<<endl;
+            setMaskFaceTraker();
+            
+        }
+    }
+    
+    
+}
+
+void ofApp::setDebugTracker(){
+
+    if(maskImage.isAllocated())
+        maskImage.clear();
+    if(maskPoints.size() > 0)
+        maskPoints.clear();
+    
+    maskFaceTracker.setup();
+    
+    // set mask Image
+    
+    static int maskNo = 0;
+    string url = "MaskImages/" + ofToString(maskNo) + ".jpg";
+    maskImage.loadImage(url);
+    maskNo ++;
+    if(maskNo >= numMaskImages)
+        maskNo = 0;
+    
+    
+    // setup maskFaceTracker
+    if(maskImage.getWidth() > 0){
+        
+        maskFaceTracker.update(ofxCv::toCv(maskImage));
+        maskPoints = maskFaceTracker.getImagePoints();
+        
+        if(!maskFaceTracker.getFound()){
+            
+            cout<<"please select good mask image."<<endl;
+            
+        }
+    }
+    
 }

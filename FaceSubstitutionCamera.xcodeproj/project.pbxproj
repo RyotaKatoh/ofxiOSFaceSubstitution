@@ -45,6 +45,16 @@
 		C1078E901A016E51001C9B51 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1078E8F1A016E51001C9B51 /* Social.framework */; };
 		C1078E931A016FAC001C9B51 /* SocialFrameworksUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C1078E921A016FAC001C9B51 /* SocialFrameworksUtil.m */; };
 		C1078E961A0202B3001C9B51 /* ofxTextParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1078E941A0202B3001C9B51 /* ofxTextParticle.cpp */; };
+		C1078EA51A034B5F001C9B51 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C1078EA21A034B5F001C9B51 /* SVProgressHUD.bundle */; };
+		C1078EA61A034B5F001C9B51 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C1078EA41A034B5F001C9B51 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		C1078F381A037D5F001C9B51 /* json_internalarray.inl in Resources */ = {isa = PBXBuildFile; fileRef = C1078F041A037D5F001C9B51 /* json_internalarray.inl */; };
+		C1078F391A037D5F001C9B51 /* json_internalmap.inl in Resources */ = {isa = PBXBuildFile; fileRef = C1078F051A037D5F001C9B51 /* json_internalmap.inl */; };
+		C1078F3A1A037D5F001C9B51 /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1078F061A037D5F001C9B51 /* json_reader.cpp */; };
+		C1078F3B1A037D5F001C9B51 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1078F081A037D5F001C9B51 /* json_value.cpp */; };
+		C1078F3C1A037D5F001C9B51 /* json_valueiterator.inl in Resources */ = {isa = PBXBuildFile; fileRef = C1078F091A037D5F001C9B51 /* json_valueiterator.inl */; };
+		C1078F3D1A037D5F001C9B51 /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1078F0A1A037D5F001C9B51 /* json_writer.cpp */; };
+		C1078F3E1A037D5F001C9B51 /* sconscript in Resources */ = {isa = PBXBuildFile; fileRef = C1078F0B1A037D5F001C9B51 /* sconscript */; };
+		C1078F401A037D5F001C9B51 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1078F0E1A037D5F001C9B51 /* ofxJSONElement.cpp */; };
 		C14E0BD919F4168F00EA3B53 /* Clone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C14E0BD719F4168F00EA3B53 /* Clone.cpp */; };
 		C602002DE761F9B52DB4400A /* ObjectFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE75A3FBA2C2D87D14F06FE6 /* ObjectFinder.cpp */; };
 		D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A4DD23693DFAB8EC05FAA5D /* ofxCvShortImage.cpp */; };
@@ -210,6 +220,29 @@
 		C1078E921A016FAC001C9B51 /* SocialFrameworksUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialFrameworksUtil.m; sourceTree = "<group>"; };
 		C1078E941A0202B3001C9B51 /* ofxTextParticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTextParticle.cpp; sourceTree = "<group>"; };
 		C1078E951A0202B3001C9B51 /* ofxTextParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTextParticle.h; sourceTree = "<group>"; };
+		C1078EA11A034B5F001C9B51 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		C1078EA21A034B5F001C9B51 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		C1078EA31A034B5F001C9B51 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		C1078EA41A034B5F001C9B51 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		C1078EFA1A037D5F001C9B51 /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autolink.h; sourceTree = "<group>"; };
+		C1078EFB1A037D5F001C9B51 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		C1078EFC1A037D5F001C9B51 /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = features.h; sourceTree = "<group>"; };
+		C1078EFD1A037D5F001C9B51 /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forwards.h; sourceTree = "<group>"; };
+		C1078EFE1A037D5F001C9B51 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		C1078EFF1A037D5F001C9B51 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		C1078F001A037D5F001C9B51 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
+		C1078F011A037D5F001C9B51 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		C1078F031A037D5F001C9B51 /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_batchallocator.h; sourceTree = "<group>"; };
+		C1078F041A037D5F001C9B51 /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalarray.inl; sourceTree = "<group>"; };
+		C1078F051A037D5F001C9B51 /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_internalmap.inl; sourceTree = "<group>"; };
+		C1078F061A037D5F001C9B51 /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_reader.cpp; sourceTree = "<group>"; };
+		C1078F071A037D5F001C9B51 /* json_tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json_tool.h; sourceTree = "<group>"; };
+		C1078F081A037D5F001C9B51 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
+		C1078F091A037D5F001C9B51 /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = json_valueiterator.inl; sourceTree = "<group>"; };
+		C1078F0A1A037D5F001C9B51 /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_writer.cpp; sourceTree = "<group>"; };
+		C1078F0B1A037D5F001C9B51 /* sconscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sconscript; sourceTree = "<group>"; };
+		C1078F0E1A037D5F001C9B51 /* ofxJSONElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSONElement.cpp; sourceTree = "<group>"; };
+		C1078F0F1A037D5F001C9B51 /* ofxJSONElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxJSONElement.h; sourceTree = "<group>"; };
 		C14E0BD719F4168F00EA3B53 /* Clone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clone.cpp; sourceTree = "<group>"; };
 		C14E0BD819F4168F00EA3B53 /* Clone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clone.h; sourceTree = "<group>"; };
 		C1C56D20A1A57DC44096BFE7 /* ofxCvContourFinder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvContourFinder.h; path = ../../../addons/ofxOpenCv/src/ofxCvContourFinder.h; sourceTree = SOURCE_ROOT; };
@@ -685,6 +718,7 @@
 		BB16F26B0F2B646B00518274 /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				C1078EA81A037D5F001C9B51 /* ofxJSON */,
 				A0B90D3B0ADB9C1716816714 /* ofxOpenCv */,
 				6025FAF6414C2CA589764D26 /* ofxCv */,
 				2B86176FA97BFB2BEE1F2F83 /* ofxFaceTracker */,
@@ -723,6 +757,100 @@
 				C1078E951A0202B3001C9B51 /* ofxTextParticle.h */,
 			);
 			name = oFApp;
+			sourceTree = "<group>";
+		};
+		C1078E9F1A034B4B001C9B51 /* OSS */ = {
+			isa = PBXGroup;
+			children = (
+				C1078EA01A034B5F001C9B51 /* SVProgressHUD */,
+			);
+			name = OSS;
+			sourceTree = "<group>";
+		};
+		C1078EA01A034B5F001C9B51 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				C1078EA11A034B5F001C9B51 /* SVProgressHUD-Prefix.pch */,
+				C1078EA21A034B5F001C9B51 /* SVProgressHUD.bundle */,
+				C1078EA31A034B5F001C9B51 /* SVProgressHUD.h */,
+				C1078EA41A034B5F001C9B51 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		C1078EA81A037D5F001C9B51 /* ofxJSON */ = {
+			isa = PBXGroup;
+			children = (
+				C1078EF61A037D5F001C9B51 /* libs */,
+				C1078F0D1A037D5F001C9B51 /* src */,
+			);
+			name = ofxJSON;
+			path = ../../../addons/ofxJSON;
+			sourceTree = "<group>";
+		};
+		C1078EF61A037D5F001C9B51 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				C1078EF71A037D5F001C9B51 /* jsoncpp */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		C1078EF71A037D5F001C9B51 /* jsoncpp */ = {
+			isa = PBXGroup;
+			children = (
+				C1078EF81A037D5F001C9B51 /* include */,
+				C1078F021A037D5F001C9B51 /* src */,
+			);
+			path = jsoncpp;
+			sourceTree = "<group>";
+		};
+		C1078EF81A037D5F001C9B51 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C1078EF91A037D5F001C9B51 /* json */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		C1078EF91A037D5F001C9B51 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				C1078EFA1A037D5F001C9B51 /* autolink.h */,
+				C1078EFB1A037D5F001C9B51 /* config.h */,
+				C1078EFC1A037D5F001C9B51 /* features.h */,
+				C1078EFD1A037D5F001C9B51 /* forwards.h */,
+				C1078EFE1A037D5F001C9B51 /* json.h */,
+				C1078EFF1A037D5F001C9B51 /* reader.h */,
+				C1078F001A037D5F001C9B51 /* value.h */,
+				C1078F011A037D5F001C9B51 /* writer.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		C1078F021A037D5F001C9B51 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C1078F031A037D5F001C9B51 /* json_batchallocator.h */,
+				C1078F041A037D5F001C9B51 /* json_internalarray.inl */,
+				C1078F051A037D5F001C9B51 /* json_internalmap.inl */,
+				C1078F061A037D5F001C9B51 /* json_reader.cpp */,
+				C1078F071A037D5F001C9B51 /* json_tool.h */,
+				C1078F081A037D5F001C9B51 /* json_value.cpp */,
+				C1078F091A037D5F001C9B51 /* json_valueiterator.inl */,
+				C1078F0A1A037D5F001C9B51 /* json_writer.cpp */,
+				C1078F0B1A037D5F001C9B51 /* sconscript */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		C1078F0D1A037D5F001C9B51 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C1078F0E1A037D5F001C9B51 /* ofxJSONElement.cpp */,
+				C1078F0F1A037D5F001C9B51 /* ofxJSONElement.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		C58CC92A5283B95AA31D50FB /* video */ = {
@@ -803,6 +931,7 @@
 		E4D8936A11527B74007E1F53 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				C1078E9F1A034B4B001C9B51 /* OSS */,
 				C1078E7319FCF530001C9B51 /* oFApp */,
 				E4D8936B11527B74007E1F53 /* main.mm */,
 				C1078E7D19FCFC78001C9B51 /* FaceSubstitutionViewController.h */,
@@ -958,8 +1087,13 @@
 				E41D3ED713B38FB500A75A5D /* Project.xcconfig in Resources */,
 				E41D3EE613B3906D00A75A5D /* CoreOF.xcconfig in Resources */,
 				678E130817951530005B6D19 /* Icon@2x.png in Resources */,
+				C1078F3C1A037D5F001C9B51 /* json_valueiterator.inl in Resources */,
 				678E130A17951536005B6D19 /* Icon.png in Resources */,
+				C1078F391A037D5F001C9B51 /* json_internalmap.inl in Resources */,
+				C1078F3E1A037D5F001C9B51 /* sconscript in Resources */,
 				678E130C1795153C005B6D19 /* Default.png in Resources */,
+				C1078EA51A034B5F001C9B51 /* SVProgressHUD.bundle in Resources */,
+				C1078F381A037D5F001C9B51 /* json_internalarray.inl in Resources */,
 				678E130E17951540005B6D19 /* Default@2x.png in Resources */,
 				C1078E8119FCFC78001C9B51 /* FaceSubstitutionViewController.xib in Resources */,
 				C1078E8419FD11C2001C9B51 /* Media.xcassets in Resources */,
@@ -992,6 +1126,7 @@
 			files = (
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
 				E4D8936F11527B74007E1F53 /* ofApp.mm in Sources */,
+				C1078F401A037D5F001C9B51 /* ofxJSONElement.cpp in Sources */,
 				250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */,
 				1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */,
 				169D3C72FDE6C5590A1616F5 /* ofxCvFloatImage.cpp in Sources */,
@@ -1015,14 +1150,18 @@
 				DBCB84A37F9AECC254870D79 /* Wrappers.cpp in Sources */,
 				F451166A6C72528F3F009F6C /* Expression.cpp in Sources */,
 				8AC885FBC5325950337592D2 /* ExpressionClassifier.cpp in Sources */,
+				C1078F3A1A037D5F001C9B51 /* json_reader.cpp in Sources */,
 				24735CD2E138DC5C1F0A1085 /* ofxFaceTracker.cpp in Sources */,
+				C1078EA61A034B5F001C9B51 /* SVProgressHUD.m in Sources */,
 				C1078E961A0202B3001C9B51 /* ofxTextParticle.cpp in Sources */,
 				80AE40254BBE0F03C25563C1 /* CLM.cc in Sources */,
 				9F4DA577D30F7B7CA7B8E5F8 /* FCheck.cc in Sources */,
 				6E23C8DD86B189759F85B24F /* FDet.cc in Sources */,
 				DE44164709810C299EAAB202 /* IO.cc in Sources */,
+				C1078F3D1A037D5F001C9B51 /* json_writer.cpp in Sources */,
 				4F02F4D92C36436C945A6716 /* Patch.cc in Sources */,
 				091CD626FECB03B3A6B3A1B2 /* PAW.cc in Sources */,
+				C1078F3B1A037D5F001C9B51 /* json_value.cpp in Sources */,
 				E6E21460246219EE9394310F /* PDM.cc in Sources */,
 				C14E0BD919F4168F00EA3B53 /* Clone.cpp in Sources */,
 				E43C5A4AB73C09290F70362D /* Tracker.cc in Sources */,
@@ -1046,6 +1185,54 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ofxiOS_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					../../../addons/ofxOpenCv/libs,
+					../../../addons/ofxOpenCv/libs/opencv,
+					../../../addons/ofxOpenCv/libs/opencv/include,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/calib3d,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/contrib,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/features2d,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/gpu,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/highgui,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/imgproc,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/legacy,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/ml,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/objdetect,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/ts,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/video,
+					../../../addons/ofxOpenCv/libs/opencv/lib,
+					../../../addons/ofxOpenCv/libs/opencv/lib/ios,
+					../../../addons/ofxOpenCv/src,
+					../../../addons/ofxCv/libs,
+					../../../addons/ofxCv/libs/CLD,
+					../../../addons/ofxCv/libs/CLD/include,
+					../../../addons/ofxCv/libs/CLD/include/CLD,
+					../../../addons/ofxCv/libs/CLD/src,
+					../../../addons/ofxCv/libs/ofxCv,
+					../../../addons/ofxCv/libs/ofxCv/include,
+					../../../addons/ofxCv/libs/ofxCv/include/ofxCv,
+					../../../addons/ofxCv/libs/ofxCv/src,
+					../../../addons/ofxCv/src,
+					../../../addons/ofxFaceTracker/libs,
+					../../../addons/ofxFaceTracker/libs/FaceTracker,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/include,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/include/FaceTracker,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/model,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/src,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/src/lib,
+					../../../addons/ofxFaceTracker/src,
+					../../../addons/ofxJSON/libs,
+					../../../addons/ofxJSON/libs/jsoncpp,
+					../../../addons/ofxJSON/libs/jsoncpp/include,
+					../../../addons/ofxJSON/libs/jsoncpp/include/json,
+					../../../addons/ofxJSON/libs/jsoncpp/src,
+					../../../addons/ofxJSON/src,
+				);
 				INFOPLIST_FILE = "ofxiOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -1058,6 +1245,54 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ofxiOS_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					../../../addons/ofxOpenCv/libs,
+					../../../addons/ofxOpenCv/libs/opencv,
+					../../../addons/ofxOpenCv/libs/opencv/include,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/calib3d,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/contrib,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/core,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/features2d,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/flann,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/gpu,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/highgui,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/imgproc,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/legacy,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/ml,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/objdetect,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/ts,
+					../../../addons/ofxOpenCv/libs/opencv/include/opencv2/video,
+					../../../addons/ofxOpenCv/libs/opencv/lib,
+					../../../addons/ofxOpenCv/libs/opencv/lib/ios,
+					../../../addons/ofxOpenCv/src,
+					../../../addons/ofxCv/libs,
+					../../../addons/ofxCv/libs/CLD,
+					../../../addons/ofxCv/libs/CLD/include,
+					../../../addons/ofxCv/libs/CLD/include/CLD,
+					../../../addons/ofxCv/libs/CLD/src,
+					../../../addons/ofxCv/libs/ofxCv,
+					../../../addons/ofxCv/libs/ofxCv/include,
+					../../../addons/ofxCv/libs/ofxCv/include/ofxCv,
+					../../../addons/ofxCv/libs/ofxCv/src,
+					../../../addons/ofxCv/src,
+					../../../addons/ofxFaceTracker/libs,
+					../../../addons/ofxFaceTracker/libs/FaceTracker,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/include,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/include/FaceTracker,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/model,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/src,
+					../../../addons/ofxFaceTracker/libs/FaceTracker/src/lib,
+					../../../addons/ofxFaceTracker/src,
+					../../../addons/ofxJSON/libs,
+					../../../addons/ofxJSON/libs/jsoncpp,
+					../../../addons/ofxJSON/libs/jsoncpp/include,
+					../../../addons/ofxJSON/libs/jsoncpp/include/json,
+					../../../addons/ofxJSON/libs/jsoncpp/src,
+					../../../addons/ofxJSON/src,
+				);
 				INFOPLIST_FILE = "ofxiOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "${TARGET_NAME}";

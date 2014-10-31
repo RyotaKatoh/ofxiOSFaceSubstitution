@@ -74,6 +74,13 @@
         [self openCamera];
         
     }
+//    else if(myApp->myScene == preview){
+//    
+//        myApp->maskTakenPhotoforDebug(img);
+//        
+//        maskedImage = [UIImage imageWithCGImage:UIImageFromOFImage(myApp->maskedImage).CGImage];
+//        self.imageView.image = maskedImage;
+//    }
     
 }
 
@@ -129,17 +136,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 
 
-    
-//    [self dismissViewControllerAnimated:YES completion:nil];
-    
-//    pickedImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
     [SVProgressHUD show];
     
     dispatch_async(sub_queue, ^{
-//        pickedImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
-//        
-//        [self getMaskedImage];
- 
+
         [self dismissViewControllerAnimated:YES completion:nil];
         
         dispatch_async(main_queue, ^{
@@ -150,16 +150,16 @@
             [self showAllButton];
             [SVProgressHUD dismiss];
             
-            //[SVProgressHUD dismiss];
-            //[self showAllButton];
+            if(!myApp->cloneReady){
+            
+                [self showNotDetectedLabel];
+                
+            }
+
         });
         
     });
-    
-//    pickedImage = (UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
-//    [self getMaskedImage];
-//    [self showAllButton];
-//    [SVProgressHUD dismiss];
+
     
 }
 
@@ -212,13 +212,15 @@ UIImage * UIImageFromOFImage( ofImage & img ){
     maskedImage = [UIImage imageWithCGImage:UIImageFromOFImage(myApp->maskedImage).CGImage];
     self.imageView.image = maskedImage;
     
+    myApp->myScene = preview;
+    
 }
 
 - (IBAction)retry:(id)sender {
     
     [self openCamera];
     
-    myApp->setMaskFaceTraker();
+    //myApp->setMaskFaceTraker();
     //myApp->setDebugTracker();
 }
 
@@ -254,7 +256,7 @@ UIImage * UIImageFromOFImage( ofImage & img ){
         
     }
     
-    [[self.savedLabel layer]setCornerRadius:6.0];
+    [[self.savedLabel layer]setCornerRadius:8.0];
     [self.savedLabel setClipsToBounds:YES];
     
     CATransition *animation = [CATransition animation];
@@ -263,13 +265,33 @@ UIImage * UIImageFromOFImage( ofImage & img ){
     [[self.savedLabel layer]addAnimation:animation forKey:nil];
     
     self.savedLabel.hidden = NO;
-    NSTimer *tm = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(hideSavedLabel:) userInfo:nil repeats:NO];
+    NSTimer *tm = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(hideSavedLabel:) userInfo:nil repeats:NO];
 
 }
 
 - (void)hideSavedLabel:(NSTimer*)timer{
 
     self.savedLabel.hidden = YES;
+    
+}
+
+- (void)showNotDetectedLabel{
+
+
+    
+    self.savedLabel.text = @"Please Try Again...";
+        
+    [[self.savedLabel layer]setCornerRadius:8.0];
+    [self.savedLabel setClipsToBounds:YES];
+    
+    CATransition *animation = [CATransition animation];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.4;
+    [[self.savedLabel layer]addAnimation:animation forKey:nil];
+    
+    self.savedLabel.hidden = NO;
+    NSTimer *tm = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(hideSavedLabel:) userInfo:nil repeats:NO];
+  
     
 }
 

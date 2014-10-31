@@ -20,9 +20,9 @@
 - (void)postToFacebook:(UIImage *)image{
 
     SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-    [vc setInitialText:@"via unknown camera"];
+    [vc setInitialText:@"via Unknown Camera"];
     [vc addImage:image];
-    [vc addURL:[NSURL URLWithString:@"http://www.apple.com"]];
+//    [vc addURL:[NSURL URLWithString:@"http://www.apple.com"]];
     
     [viewController presentViewController:vc animated:YES completion:nil];
     
@@ -31,9 +31,9 @@
 - (void)postToTwitter:(UIImage *)image{
 
     SLComposeViewController *vc = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-    [vc setInitialText:@" #unknownCamera"];
+    [vc setInitialText:@" #Unknown Camera"];
     [vc addImage:image];
-    [vc addURL:[NSURL URLWithString:@"http://www.apple.com"]];
+//    [vc addURL:[NSURL URLWithString:@"http://www.apple.com"]];
     
     [viewController presentViewController:vc animated:YES completion:nil];
     

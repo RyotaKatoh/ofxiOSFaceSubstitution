@@ -44,18 +44,18 @@ public:
     void gotMemoryWarning();
     void deviceOrientationChanged(int newOrientation);
     
-    void maskTakenPhoto();
     void maskTakenPhoto(ofImage &input);
-    
     void setMaskFaceTraker();
-    void setDebugTracker();
     
-#ifndef USE_SIMULATOR
-    ofVideoGrabber  camera;
+    
+    void maskTakenPhotoforDebug(ofImage &input);
+    void setMaskTrackerforDebug();
+    
+    void changeMesh(); // this is for titleMesh
+    
 
-#else
     ofImage         camera;
-#endif
+
     int             numMaskImages;
     ofImage         maskImage;
     
@@ -80,6 +80,8 @@ public:
 
     vector<ofxTextParticle> titles;
     ofTrueTypeFont  font;
+    ofMesh          originalTitleMesh, titleMesh;
+    ofxFaceTracker  titleFaceTracker;
 
 };
 

@@ -34,17 +34,10 @@ void ofApp::setup(){
     }
     
     
-#ifndef USE_SIMULATOR
+
     
-// TODO: write camera code
-    camera.setDeviceID(1);
-    camera.initGrabber(ofGetWidth(), ofGetHeight());
-    
-    
-#else
-    
-    camera.loadImage("mask5.jpg");
-    camera.rotate90(45);
+    camera.loadImage("mask3.jpg");
+//    camera.rotate90(45);
 
     if(camera.getWidth() > camera.getHeight()){
     
@@ -56,52 +49,23 @@ void ofApp::setup(){
         
     }
     
-#endif
     
-//    ofFbo::Settings settings;
-//    settings.width = camera.getWidth();
-//    settings.height= camera.getHeight();
-//    maskFbo.allocate(settings);
-//    cameraFbo.allocate(settings);
-//    
+  
     cameraFaceTracker.setup();
     maskFaceTracker.setup();
     
-//    clone.setup(camera.getWidth(), camera.getHeight());
+    
+
     cloneReady = false;
     
     
-
-    int maskNo = ofRandom(numMaskImages);
-    url = "http://ryotakatoh.com/unknowncamera/MaskImages/"+ofToString(maskNo)+".jpg";
-    maskImage.loadImage(url);
-    if(!maskImage.isAllocated()){
-    
-        maskNo = ofRandom(STORED_IMAGES);
-        url = "mask" + ofToString(maskNo) + ".jpg";
-        maskImage.loadImage(url);
-        
-    }
-    
-
-    
-    if(maskImage.getWidth() > 0){
-    
-        maskFaceTracker.update(ofxCv::toCv(maskImage));
-        maskPoints = maskFaceTracker.getImagePoints();
-
-        if(!maskFaceTracker.getFound()){
-            
-            cout<<"please select good mask image."<<endl;
-            
-        }
-    }
-
     
     bTakenPhoto = false;
     
     myScene = ready;
     
+    
+    // this is for ready screen.
     ofxTextParticle unknownTitle;
     unknownTitle.setup("Unknown", ofPoint(ofGetWidth()/2., ofGetHeight()/7.));
     titles.push_back(unknownTitle);
@@ -112,21 +76,39 @@ void ofApp::setup(){
     
     font.loadFont("font/Arial Black.ttf", 18);
     
+    // for titleMesh
+    maskFaceTracker.update(ofxCv::toCv(camera));
+    originalTitleMesh = maskFaceTracker.getImageMesh();
+    
+    for(int i=0;i<originalTitleMesh.getVertices().size();i++){
+    
+        titleMesh.addVertex(originalTitleMesh.getVertices()[i]);
+        
+        
+    }
+    for(int i=0;i<originalTitleMesh.getIndices().size()/3;i++){
+    
+        if(ofRandom(1.0) < 0.3){
+        
+            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3]);
+            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3+1]);
+            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3+2]);
+            
+        }
+        
+    }
+
     
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
-#ifndef USE_SIMULATOR
-
-    if(!bTakenPhoto){
+    if(myScene == ready){
     
-        camera.update();
+        changeMesh();
         
     }
-
-#endif
 
 }
 
@@ -138,17 +120,34 @@ void ofApp::draw(){
     
         // TODO: write some ready code.
         
+        // title
         for(int i=0;i<titles.size();i++)
             titles[i].draw();
         
+        
+        // titileMesh
+        ofPushMatrix();
+        
+        ofTranslate(ofGetWidth()/2. - camera.getWidth()+10, ofGetHeight()/2. - camera.getHeight()+ 50);
+        
+        ofScale(2.0, 2.0);
+                
+        titleMesh.draw();
+        
+        ofPopMatrix();
+        
+        
+        // start string
         ofPushStyle();
         
         ofSetColor(255, 255, 255, 255*abs(sin(ofGetFrameNum()*0.05)));
         string tapToStart = "tap to start";
-        font.drawString(tapToStart, ofGetWidth()/2. - font.stringWidth(tapToStart)/2., ofGetHeight()*5/7 - font.stringHeight(tapToStart)/2.);
+        font.drawString(tapToStart, ofGetWidth()/2. - font.stringWidth(tapToStart)/2., ofGetHeight()*5/7 - font.stringHeight(tapToStart)/2. +100);
         
         ofPopStyle();
         
+        
+
     }
 
     
@@ -164,6 +163,8 @@ void ofApp::exit(){
 //--------------------------------------------------------------
 void ofApp::touchDown(ofTouchEventArgs & touch){
 
+    changeMesh();
+    
 }
 
 //--------------------------------------------------------------
@@ -174,17 +175,6 @@ void ofApp::touchMoved(ofTouchEventArgs & touch){
 //--------------------------------------------------------------
 void ofApp::touchUp(ofTouchEventArgs & touch){
 
-    if(bTakenPhoto){
-    
-        bTakenPhoto = !bTakenPhoto;
-        
-    }
-    else{
-        bTakenPhoto = !bTakenPhoto;
-        
-        maskTakenPhoto();
-    }
-    
 }
 
 //--------------------------------------------------------------
@@ -217,61 +207,12 @@ void ofApp::deviceOrientationChanged(int newOrientation){
 
 }
 
-void ofApp::maskTakenPhoto(){
-    
-#ifndef USE_SIMULATOR
-    ofImage tmp;
-    tmp.setFromPixels(camera.getPixels(), camera.getWidth(), camera.getHeight(), OF_IMAGE_COLOR);
-    
-    cameraFaceTracker.update(ofxCv::toCv(tmp));
-
-#else
-    
-    cameraFaceTracker.update(ofxCv::toCv(camera));
-    
-#endif
-
-    
-    cloneReady = cameraFaceTracker.getFound();
-    
-    if(cloneReady){
-    
-        ofMesh cameraMesh = cameraFaceTracker.getImageMesh();
-        cameraMesh.clearTexCoords();
-        cameraMesh.addTexCoords(maskPoints);
-        for(int i=0; i< cameraMesh.getTexCoords().size(); i++) {
-            ofVec2f & texCoord = cameraMesh.getTexCoords()[i];
-            texCoord.x /= ofNextPow2(maskImage.getWidth());
-            texCoord.y /= ofNextPow2(maskImage.getHeight());
-        }
-        
-        maskFbo.begin();
-        ofClear(0, 255);
-        cameraMesh.draw();
-        maskFbo.end();
-        
-        cameraFbo.begin();
-        ofClear(0, 255);
-        camera.getTextureReference().bind();
-        maskImage.bind();
-        cameraMesh.draw();
-        maskImage.unbind();
-        cameraFbo.end();
-        
-        clone.setStrength(16);
-        clone.update(cameraFbo.getTextureReference(), camera.getTextureReference(), maskFbo.getTextureReference());
-        
-        
-        
-        
-    }
-
-}
 
 void ofApp::maskTakenPhoto(ofImage &input){
 
-    // change image type. OF_IMAGE_COLOR_ALPHA => OF_IMAGE_COLOR
+    setMaskFaceTraker();
     
+    // change image type. OF_IMAGE_COLOR_ALPHA => OF_IMAGE_COLOR
     if(input.type == OF_IMAGE_COLOR_ALPHA){
     
         input.setImageType(OF_IMAGE_COLOR);
@@ -327,7 +268,7 @@ void ofApp::maskTakenPhoto(ofImage &input){
         maskImage.unbind();
         cameraFbo.end();
         
-        clone.setStrength(16);
+        clone.setStrength(12);
         clone.update(cameraFbo.getTextureReference(), input.getTextureReference(), maskFbo.getTextureReference());
         
         
@@ -354,11 +295,13 @@ void ofApp::setMaskFaceTraker(){
         maskImage.clear();
     if(maskPoints.size() > 0)
         maskPoints.clear();
+    maskFaceTracker.setup();
     
     // set mask Image
     int maskNo = ofRandom(numMaskImages);
     string url = "http://ryotakatoh.com/unknowncamera/MaskImages/"+ofToString(maskNo)+".jpg";
     maskImage.loadImage(url);
+    
     if(!maskImage.isAllocated()){
         
         maskNo = ofRandom(STORED_IMAGES);
@@ -384,24 +327,105 @@ void ofApp::setMaskFaceTraker(){
     
 }
 
-void ofApp::setDebugTracker(){
+void ofApp::maskTakenPhotoforDebug(ofImage &input){
+
+    setMaskTrackerforDebug();
+    
+    // change image type. OF_IMAGE_COLOR_ALPHA => OF_IMAGE_COLOR
+    if(input.type == OF_IMAGE_COLOR_ALPHA){
+        
+        input.setImageType(OF_IMAGE_COLOR);
+        
+    }
+    
+    // resize input image.
+    if(input.getWidth() > input.getHeight()){
+        
+        input.resize(ofGetWidth(), input.getHeight()*ofGetWidth() /input.getWidth());
+    }
+    else{
+        
+        input.resize(input.getWidth()*ofGetHeight()/input.getHeight(), ofGetHeight());
+        
+    }
+    
+    
+    // set mask Fbo
+    ofFbo::Settings settings;
+    settings.width = input.getWidth();
+    settings.height= input.getHeight();
+    maskFbo.allocate(settings);
+    cameraFbo.allocate(settings);
+    
+    clone.setup(input.getWidth(), input.getHeight());
+    
+    
+    cameraFaceTracker.update(ofxCv::toCv(input));
+    cloneReady = cameraFaceTracker.getFound();
+    
+    if(cloneReady){
+        
+        ofMesh cameraMesh = cameraFaceTracker.getImageMesh();
+        cameraMesh.clearTexCoords();
+        cameraMesh.addTexCoords(maskPoints);
+        for(int i=0; i< cameraMesh.getTexCoords().size(); i++) {
+            ofVec2f & texCoord = cameraMesh.getTexCoords()[i];
+            texCoord.x /= ofNextPow2(maskImage.getWidth());
+            texCoord.y /= ofNextPow2(maskImage.getHeight());
+        }
+        
+        maskFbo.begin();
+        ofClear(0, 255);
+        cameraMesh.draw();
+        maskFbo.end();
+        
+        cameraFbo.begin();
+        ofClear(0, 255);
+        input.getTextureReference().bind();
+        maskImage.bind();
+        cameraMesh.draw();
+        maskImage.unbind();
+        cameraFbo.end();
+        
+        clone.setStrength(16);
+        clone.update(cameraFbo.getTextureReference(), input.getTextureReference(), maskFbo.getTextureReference());
+        
+        
+        ofPixels pixels;
+        clone.buffer.readToPixels(pixels);
+        maskedImage.setFromPixels(pixels);
+        maskedImage.update();
+        
+        
+        myScene = preview;
+        
+    }
+    else{
+        
+        maskedImage = input;
+        
+    }
+    
+}
+
+void ofApp::setMaskTrackerforDebug(){
 
     if(maskImage.isAllocated())
         maskImage.clear();
     if(maskPoints.size() > 0)
         maskPoints.clear();
-    
     maskFaceTracker.setup();
     
     // set mask Image
+    static int debugMuskNo = 0;
     
-    static int maskNo = 0;
-    string url = "MaskImages/" + ofToString(maskNo) + ".jpg";
+    string url = "http://ryotakatoh.com/unknowncamera/MaskImages/"+ofToString(debugMuskNo)+".jpg";
     maskImage.loadImage(url);
-    maskNo ++;
-    if(maskNo >= numMaskImages)
-        maskNo = 0;
     
+    cout<<debugMuskNo<<endl;
+    debugMuskNo ++;
+    if(debugMuskNo > numMaskImages)
+        debugMuskNo = 0;
     
     // setup maskFaceTracker
     if(maskImage.getWidth() > 0){
@@ -411,9 +435,36 @@ void ofApp::setDebugTracker(){
         
         if(!maskFaceTracker.getFound()){
             
-            cout<<"please select good mask image."<<endl;
+            //cout<<"please select good mask image."<<endl;
             
         }
     }
+    
+}
+
+#pragma mark - titleMesh
+
+void ofApp::changeMesh(){
+
+    titleMesh.clear();
+
+    
+    for (int i=0; i<originalTitleMesh.getVertices().size(); i++) {
+        
+        titleMesh.addVertex(originalTitleMesh.getVertices()[i]);
+        
+    }
+    for(int i=0;i<originalTitleMesh.getIndices().size()/3;i++){
+        
+        if(ofRandom(1.0) < 0.3){
+
+            
+            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3]);
+            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3+1]);
+            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3+2]);
+        }
+    }
+    
+
     
 }

@@ -122,7 +122,7 @@ void ofApp::draw(){
         
         // title
         for(int i=0;i<titles.size();i++)
-            titles[i].draw();
+            titles[i].noiseDraw();
         
         
         // titileMesh

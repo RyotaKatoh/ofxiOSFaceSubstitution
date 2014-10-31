@@ -72,6 +72,7 @@ public:
     void setup(string _text, ofPoint _center);
     void update();
     void draw();
+    void noiseDraw();
     
     void setString(string _text);
     

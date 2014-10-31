@@ -110,12 +110,24 @@ void ofxTextParticle::draw(){
     
     for(int i=0;i<particles.size();i++){
     
-        //particles[i].draw();
-        particles[i].noiseDraw();
+        particles[i].draw();
+        
     }
 
     
 }
+
+void ofxTextParticle::noiseDraw(){
+
+    for(int i=0;i<particles.size();i++){
+    
+        particles[i].noiseDraw();
+        
+    }
+    
+}
+
+
 
 void ofxTextParticle::setString(string _text){
 

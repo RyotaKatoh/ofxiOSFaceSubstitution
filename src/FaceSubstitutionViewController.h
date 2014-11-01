@@ -25,6 +25,8 @@
     dispatch_queue_t main_queue;
     dispatch_queue_t sub_queue;
     
+    BOOL usePhotoLibrary;
+    
 }
 
 - (void)openCamera;

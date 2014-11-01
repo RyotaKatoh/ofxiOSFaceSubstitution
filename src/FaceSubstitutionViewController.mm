@@ -35,6 +35,7 @@
     [self.twitterButton.imageView setTintColor:[UIColor whiteColor]];
     [self.saveButton.imageView setTintColor:[UIColor whiteColor]];
     
+    usePhotoLibrary = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +73,7 @@
         
         myApp->myScene = openCamera;
         [self openCamera];
+        //[self openPhotoLibrary];
         
     }
 //    else if(myApp->myScene == preview){
@@ -130,6 +132,8 @@
         
         
     }
+    
+    usePhotoLibrary = YES;
     
 }
 
@@ -206,7 +210,9 @@ UIImage * UIImageFromOFImage( ofImage & img ){
 - (void)getMaskedImage{
 
     ofxiOSUIImageToOFImage(pickedImage, img);
-    img.rotate90(45);
+    
+    if(!usePhotoLibrary)
+        img.rotate90(45);
     myApp->maskTakenPhoto(img);
     
     maskedImage = [UIImage imageWithCGImage:UIImageFromOFImage(myApp->maskedImage).CGImage];

@@ -53,6 +53,7 @@ public:
     
     void changeMesh(); // this is for titleMesh
     
+    ofImage         backgoundImage;
 
     ofImage         camera;
 

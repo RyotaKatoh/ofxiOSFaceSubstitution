@@ -13,6 +13,7 @@ void ofApp::setup(){
 
     ofSetVerticalSync(true);
     ofBackground(0, 0, 0);
+    ofEnableSmoothing();
     
     // gui set up
     guiViewController = [[FaceSubstitutionViewController alloc]initWithNibName:@"FaceSubstitutionViewController" bundle:nil];
@@ -36,18 +37,18 @@ void ofApp::setup(){
     
 
     
-    camera.loadImage("mask3.jpg");
+//    camera.loadImage("mask3.jpg");
 //    camera.rotate90(45);
-
-    if(camera.getWidth() > camera.getHeight()){
-    
-        camera.resize(ofGetWidth(), camera.getHeight()*ofGetWidth() /camera.getWidth());
-    }
-    else{
-    
-        camera.resize(camera.getWidth()*ofGetHeight()/camera.getHeight(), ofGetHeight());
-        
-    }
+//
+//    if(camera.getWidth() > camera.getHeight()){
+//    
+//        camera.resize(ofGetWidth(), camera.getHeight()*ofGetWidth() /camera.getWidth());
+//    }
+//    else{
+//    
+//        camera.resize(camera.getWidth()*ofGetHeight()/camera.getHeight(), ofGetHeight());
+//        
+//    }
     
     
   
@@ -67,36 +68,38 @@ void ofApp::setup(){
     
     // this is for ready screen.
     ofxTextParticle unknownTitle;
-    unknownTitle.setup("Unknown", ofPoint(ofGetWidth()/2., ofGetHeight()/7.));
+    unknownTitle.setup("Unknown", ofPoint(ofGetWidth()/2., ofGetHeight()*3/7.));
     titles.push_back(unknownTitle);
     
     ofxTextParticle cameraTitle;
-    cameraTitle.setup("Camera", ofPoint(ofGetWidth()/2., ofGetHeight()*2/7.));
+    cameraTitle.setup("Camera", ofPoint(ofGetWidth()/2., ofGetHeight()*4/7.));
     titles.push_back(cameraTitle);
     
     font.loadFont("font/Arial Black.ttf", 18);
     
+    backgoundImage.loadImage("background.png");
+    
     // for titleMesh
-    maskFaceTracker.update(ofxCv::toCv(camera));
-    originalTitleMesh = maskFaceTracker.getImageMesh();
-    
-    for(int i=0;i<originalTitleMesh.getVertices().size();i++){
-    
-        titleMesh.addVertex(originalTitleMesh.getVertices()[i]);
-        
-        
-    }
-    for(int i=0;i<originalTitleMesh.getIndices().size()/3;i++){
-    
-        if(ofRandom(1.0) < 0.3){
-        
-            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3]);
-            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3+1]);
-            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3+2]);
-            
-        }
-        
-    }
+//    maskFaceTracker.update(ofxCv::toCv(camera));
+//    originalTitleMesh = maskFaceTracker.getImageMesh();
+//    
+//    for(int i=0;i<originalTitleMesh.getVertices().size();i++){
+//    
+//        titleMesh.addVertex(originalTitleMesh.getVertices()[i]);
+//        
+//        
+//    }
+//    for(int i=0;i<originalTitleMesh.getIndices().size()/3;i++){
+//    
+//        if(ofRandom(1.0) < 0.3){
+//        
+//            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3]);
+//            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3+1]);
+//            titleMesh.addIndex(originalTitleMesh.getIndices()[i*3+2]);
+//            
+//        }
+//        
+//    }
 
     
 }
@@ -106,7 +109,7 @@ void ofApp::update(){
 
     if(myScene == ready){
     
-        changeMesh();
+        //changeMesh();
         
     }
 
@@ -120,21 +123,30 @@ void ofApp::draw(){
     
         // TODO: write some ready code.
         
+        // background
+        backgoundImage.draw(0, 0, ofGetWidth(), ofGetHeight());
+        ofPushStyle();
+        
+        ofSetColor(0, 0, 0, 180);
+        ofRect(0, 0, ofGetWidth(), ofGetHeight());
+        
+        ofPopStyle();
+        
         // title
         for(int i=0;i<titles.size();i++)
             titles[i].noiseDraw();
-        
+            //titles[i].draw();
         
         // titileMesh
-        ofPushMatrix();
-        
-        ofTranslate(ofGetWidth()/2. - camera.getWidth()+10, ofGetHeight()/2. - camera.getHeight()+ 50);
-        
-        ofScale(2.0, 2.0);
-                
-        titleMesh.draw();
-        
-        ofPopMatrix();
+//        ofPushMatrix();
+//        
+//        ofTranslate(ofGetWidth()/2. - camera.getWidth()+10, ofGetHeight()/2. - camera.getHeight()+ 50);
+//        
+//        ofScale(2.0, 2.0);
+//                
+//        //titleMesh.draw();
+//        
+//        ofPopMatrix();
         
         
         // start string
@@ -148,6 +160,17 @@ void ofApp::draw(){
         
         
 
+    }
+    else{
+    
+        // background
+        backgoundImage.draw(0, 0, ofGetWidth(), ofGetHeight());
+        ofPushStyle();
+        
+        ofSetColor(0, 0, 0, 180);
+        ofRect(0, 0, ofGetWidth(), ofGetHeight());
+        ofPopStyle();
+    
     }
 
     
